@@ -1,0 +1,45 @@
+# First, let's install the necessary library
+!pip install matplotlib
+
+# Importing the required libraries
+import matplotlib.pyplot as plt
+
+# Function to create a symbol
+def draw_symbol(symbol_name, symbol_function):
+    plt.figure(figsize=(4, 4))
+    plt.title(symbol_name, fontsize=16)
+    plt.axis('off')  # Turn off the axis
+    symbol_function()
+    plt.show()
+
+# Define symbols using basic shapes
+def connection_symbol():
+    circle1 = plt.Circle((-0.5, 0), 0.4, color='blue', alpha=0.5)
+    circle2 = plt.Circle((0.5, 0), 0.4, color='green', alpha=0.5)
+    plt.gca().add_artist(circle1)
+    plt.gca().add_artist(circle2)
+    plt.plot([-0.5, 0.5], [0, 0], color='black', linewidth=5) # Line connecting circles
+    plt.xlim(-1, 1)
+    plt.ylim(-0.5, 0.5)
+
+def adventure_symbol():
+    plt.plot([-0.5, 0], [-0.5, 0.5], color='brown', linewidth=5)   # Path
+    plt.plot([0, 0.5], [0.5, 0], color='brown', linewidth=5)       # Path
+    plt.plot([0.5, 0], [0.5, 1], color='gray', linewidth=5)        # Mountain
+    plt.fill_between([-0.5, 0.5], 0, 1, color='lightgray')        # Ground
+    plt.xlim(-1, 1)
+    plt.ylim(-1, 1)
+
+def wisdom_symbol():
+    plt.plot([-0.5, 0.5], [0, 0], color='black', linewidth=3)  # Book base
+    plt.plot([-0.5, -0.5], [0, 0.4], color='black', linewidth=3)  # Left side
+    plt.plot([0.5, 0.5], [0, 0.4], color='black', linewidth=3)    # Right side
+    plt.plot([-0.5, 0.5], [0.4, 0.4], color='black', linewidth=3) # Book top
+    plt.arrow(0, 0.4, 0, 0.3, head_width=0.05, head_length=0.1, fc='yellow', ec='yellow')  # Light rays
+    plt.xlim(-1, 1)
+    plt.ylim(-0.5, 1)
+
+# Draw the symbols
+draw_symbol("Connection Symbol", connection_symbol)
+draw_symbol("Adventure Symbol", adventure_symbol)
+draw_symbol("Wisdom Symbol", wisdom_symbol)
